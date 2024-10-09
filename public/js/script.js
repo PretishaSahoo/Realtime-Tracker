@@ -23,7 +23,7 @@ const markers = {}
 socket.on("recieve-location" , (data)=>{   
     const {id , latitude , longitude} = data ;
     console.log(`User with ${id} joined`)
-    map.setView([latitude , longitude] , 12);
+    map.setView([latitude , longitude] , 20);
     if(markers[id]){
         markers[id].setLatLng(latitude,longitude);
     }
