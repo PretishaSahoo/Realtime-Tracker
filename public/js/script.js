@@ -20,17 +20,17 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" , {}).addTo(map
 
 const markers = {}
 
-socket.on("recieve-location" , (data)=>{   
-    const {id , latitude , longitude} = data ;
-    console.log(`User with ${id} joined`)
-    map.setView([latitude , longitude] , 12);
-    if(markers[id]){
-        markers[id].setLatLng(latitude,longitude);
+socket.on("recieve-location", (data) => {   
+    const {id, latitude, longitude} = data;
+    console.log(`User with ${id} joined`);
+    if (markers[id]) {
+        markers[id].setLatLng([latitude, longitude]);
+    } else {
+        markers[id] = L.marker([latitude, longitude]).addTo(map);
+        map.setView([latitude, longitude], 18);  
     }
-    else{
-        markers[id] = L.marker([latitude,longitude]).addTo(map);
-    }
-})
+});
+
 
 socket.on("user-disconnected" , (id)=>{
     console.log(`user disconnected ${id}`)
