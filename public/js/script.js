@@ -15,7 +15,7 @@ if(navigator.geolocation){
     }
 }
 
-const map = L.map("map").setView([0,0] , 26);
+const map = L.map("map").setView([0,0] , 10);
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" , {}).addTo(map)
 
 const markers = {}
@@ -23,7 +23,7 @@ const markers = {}
 socket.on("recieve-location" , (data)=>{   
     const {id , latitude , longitude} = data ;
     console.log(`User with ${id} joined`)
-    map.setView([latitude , longitude] , 26);
+    map.setView([latitude , longitude] , 12);
     if(markers[id]){
         markers[id].setLatLng(latitude,longitude);
     }
